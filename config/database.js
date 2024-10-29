@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 require("dotenv").config(); // Cargar las variables de entorno
 
-import { Sequelize } from "sequelize";
+const { Sequelize } = require("sequelize");
 
 // Configura la conexión a la base de datos
 const sequelize = new Sequelize(
@@ -15,4 +15,4 @@ const sequelize = new Sequelize(
   }
 );
 
-export default sequelize;
+module.exports = sequelize;
