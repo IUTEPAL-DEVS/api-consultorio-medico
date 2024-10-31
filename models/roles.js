@@ -1,19 +1,19 @@
-/* eslint-disable no-undef */
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
 
-const Roles = sequelize.define(
-  "roles",
-  {
-    nombre: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+module.exports = (sequelize) => {
+  const Roles = sequelize.define(
+    "Roles",
+    {
+      nombre: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
     },
-  },
-  {
-    tableName: "roles",
-    timestamps: true,
-  }
-);
+    {
+      tableName: "roles",
+      timestamps: true,
+    }
+  );
 
-module.exports = Roles;
+  return Roles;
+};

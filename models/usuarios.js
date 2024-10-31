@@ -1,34 +1,34 @@
-/* eslint-disable no-undef */
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
 const Roles = require("./roles");
 
-const Usuarios = sequelize.define(
-  "Usuarios",
-  {
-    nombre_usuario: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      unique: true,
-    },
-    contrasena: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    id_rol: {
-      type: DataTypes.BIGINT,
-      references: {
-        model: Roles,
-        key: "id",
+module.exports = (sequelize) => {
+  const Usuarios = sequelize.define(
+    "Usuarios",
+    {
+      nombre_usuario: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        unique: true,
+      },
+      contrasena: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      id_rol: {
+        type: DataTypes.BIGINT,
+        references: {
+          model: "Roles", // Cambia esto para que sea una cadena
+          key: "id",
+        },
       },
     },
-  },
-  {
-    tableName: "usuarios",
-    timestamps: true,
-  }
-);
+    {
+      tableName: "usuarios",
+      timestamps: false,
+    }
+  );
 
-Usuarios.belongsTo(Roles, { foreignKey: "id_rol" });
+  Usuarios.belongsTo(Roles(sequelize), { foreignKey: "id_rol" });
 
-module.exports = Usuarios;
+  return Usuarios;
+};

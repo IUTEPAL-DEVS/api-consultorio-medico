@@ -1,22 +1,20 @@
-/* eslint-disable no-undef */
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
 
-const Patologia = sequelize.define(
-  "Patologia",
-  {
-    name: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+module.exports = (sequelize) => {
+  return sequelize.define(
+    "Patologia",
+    {
+      name: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      descripcion: {
+        type: DataTypes.TEXT,
+      },
     },
-    descripcion: {
-      type: DataTypes.TEXT,
-    },
-  },
-  {
-    tableName: "patologia",
-    timestamps: true,
-  }
-);
-
-module.exports = Patologia;
+    {
+      tableName: "patologia",
+      timestamps: false,
+    }
+  );
+};

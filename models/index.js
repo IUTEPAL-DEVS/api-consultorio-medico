@@ -1,22 +1,21 @@
-/* eslint-disable no-undef */
 const Sequelize = require("sequelize");
 const sequelize = require("../config/database");
 
 // Importar modelos
-const Paciente = require("./paciente"); // archivo: paciente.js
-const Medico = require("./medico"); // archivo: medico.js
-const EspecialidadMedica = require("./especialidad_medica"); // archivo: especialidad.js
-const Sintomas = require("./sintomas"); // archivo: sintoma.js
-const Patologia = require("./patologias"); // archivo: patologia.js
-const Citas = require("./citas"); // archivo: cita.js
-const HistorialClinico = require("./historial_clinico"); // archivo: historial_clinico.js
-const Usuarios = require("./usuarios"); // archivo: usuario.js
-const Roles = require("./roles"); // archivo: rol.js
-const TipoPaciente = require("./tipo_paciente"); // archivo: tipo_paciente.js
-const TipoPatologia = require("./tipo_patologia"); // archivo: tipo_patologia.js
-const PatologiaSintomaRel = require("./patologia_sintoma_rel"); // archivo: patologia_sintoma_rel.js
-const MorbilidadConsulta = require("./morbilidad_consulta"); // archivo: morbilidad_consulta.js
-const SintomaConsulta = require("./sintoma_consulta"); // archivo: sintoma_consulta.js
+const Paciente = require("./paciente")(sequelize);
+const Medico = require("./medico")(sequelize);
+const EspecialidadMedica = require("./especialidad_medica")(sequelize);
+const Sintomas = require("./sintomas")(sequelize);
+const Patologia = require("./patologias")(sequelize);
+const Citas = require("./citas")(sequelize);
+const HistorialClinico = require("./historial_clinico")(sequelize);
+const Roles = require("./roles")(sequelize);
+const Usuarios = require("./usuarios")(sequelize);
+const TipoPaciente = require("./tipo_paciente")(sequelize);
+const TipoPatologia = require("./tipo_patologia")(sequelize);
+const PatologiaSintomaRel = require("./patologia_sintoma_rel")(sequelize);
+const MorbilidadConsulta = require("./morbilidad_consulta")(sequelize);
+const SintomaConsulta = require("./sintoma_consulta")(sequelize);
 
 // Asociaciones
 // Relaciones de Paciente
@@ -67,8 +66,8 @@ module.exports = {
   Patologia,
   Citas,
   HistorialClinico,
-  Usuarios,
   Roles,
+  Usuarios,
   TipoPaciente,
   TipoPatologia,
   PatologiaSintomaRel,

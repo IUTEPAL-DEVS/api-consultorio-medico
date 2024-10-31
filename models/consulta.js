@@ -1,35 +1,34 @@
-/* eslint-disable no-undef */
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/database");
-const Paciente = require("./paciente");
-const Medico = require("./medico");
 
-const Consulta = sequelize.define(
-  "Consulta",
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    cedula_paciente: {
-      type: DataTypes.TEXT,
-      references: {
-        model: Paciente,
-        key: "cedula",
+module.exports = (sequelize) => {
+  return sequelize.define(
+    "Consulta",
+    {
+      id: {
+        type: DataTypes.BIGINT,
+        primaryKey: true,
+        autoIncrement: true,
       },
-    },
-    id_medico: {
-      type: DataTypes.BIGINT,
-      references: {
-        model: Medico,
-        key: "id",
+      cedula_paciente: {
+        type: DataTypes.TEXT,
+        references: {
+          model: "paciente", // Usa el nombre de la tabla en lugar del modelo
+          key: "cedula",
+        },
       },
+      id_medico: {
+        type: DataTypes.BIGINT,
+        references: {
+          model: "medico", // Usa el nombre de la tabla en lugar del modelo
+          key: "id",
+        },
+      },
+      fecha: DataTypes.DATE,
+      observaciones: DataTypes.TEXT,
     },
-    fecha: DataTypes.DATE,
-    observaciones: DataTypes.TEXT,
-  },
-  { tableName: "consulta", timestamps: true }
-);
-
-module.exports = Consulta;
+    {
+      tableName: "consulta",
+      timestamps: false,
+    }
+  );
+};
