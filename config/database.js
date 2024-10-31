@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 require("dotenv").config(); // Cargar las variables de entorno
 
 const { Sequelize } = require("sequelize");
